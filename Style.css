@@ -1,0 +1,121 @@
+:root {
+  --primary: #008964;
+  --primary-dark: #004D38;
+  --accent: #a0e6c1;
+  --bg-gradient: linear-gradient(-100deg, #004D38, #008964, #2d3436);
+  --white: #ffffff;
+  --shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+/* --- ШАПКА --- */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  padding: 15px 0;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+  z-index: 9999;
+}
+
+.nav-menu { display: flex; gap: 15px; }
+.nav-btn {
+  padding: 10px 20px;
+  border: 2px solid var(--primary);
+  background: transparent;
+  color: var(--primary-dark);
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: 0.3s;
+}
+.nav-btn.active { background: var(--primary); color: white; }
+
+/* --- БАЗОВЫЕ СТИЛИ --- */
+body {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite;
+  padding-top: 90px;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.page-section { display: none; width: 100%; justify-content: center; animation: fadeIn 0.5s ease; }
+.page-section.active { display: flex; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+.container {
+  width: 90%;
+  max-width: 650px;
+  background: rgba(255, 255, 255, 0.98);
+  padding: 35px;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 30px;
+  box-sizing: border-box;
+}
+
+/* --- ОПРОС --- */
+.progress-bar-container { height: 8px; background: #eee; border-radius: 10px; margin: 15px 0; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--primary); width: 0%; transition: width 0.4s ease; }
+.question-title { font-size: 20px; font-weight: 600; margin-bottom: 20px; color: #2c3e50; }
+.options-list { display: grid; gap: 10px; }
+
+.option-card {
+  padding: 14px 18px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  background: white;
+  box-sizing: border-box;
+}
+.option-card:hover { border-color: var(--primary); background: #f9fffb; }
+.option-card.selected { border-color: var(--primary); background: #eafff5; }
+
+.radio-dot { width: 16px; height: 16px; border: 2px solid #ccc; border-radius: 50%; margin-right: 12px; position: relative; flex-shrink: 0; }
+.option-card.selected .radio-dot { border-color: var(--primary); background: var(--primary); }
+
+.controls { display: flex; justify-content: space-between; margin-top: 30px; gap: 10px; }
+button { padding: 12px 25px; border: none; border-radius: 10px; cursor: pointer; font-weight: 700; transition: 0.3s; flex: 1; }
+.btn-next { background: var(--primary); color: white; }
+.btn-prev { background: #f0f0f0; color: #666; }
+
+/* --- РЕЗУЛЬТАТЫ --- */
+.stat-row { margin-bottom: 15px; }
+.bar-bg { background: #eee; height: 10px; border-radius: 5px; margin-top: 5px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--primary); width: 0; transition: width 1s ease-out; }
+.club-card {
+  background: #f8f9fa; padding: 15px; border-radius: 12px; border-left: 5px solid var(--primary); margin-top: 10px;
+}
+
+/* --- ДИСЦИПЛИНЫ --- */
+.discipline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+.discipline-card { 
+  background: white; 
+  border: 2px solid #eee; 
+  padding: 25px 15px; 
+  border-radius: 15px; 
+  text-align: center; 
+  cursor: pointer; 
+  transition: 0.3s;
+}
+.discipline-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.circle-icon { width: 50px; height: 50px; background: var(--accent); border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }

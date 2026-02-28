@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Навигатор Кружков | Темирлан, Амирхан, Никита и Александр</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <nav class="nav-menu">
+            <button class="nav-btn active" onclick="switchTab('quiz-tab', this)">📚 Кружки</button>
+            <button class="nav-btn" onclick="switchTab('disciplines-tab', this)">🎓 Дисциплины</button>
+        </nav>
+    </header>
+
+    <section id="quiz-tab" class="page-section active">
+        <div class="container" id="mainContainer">
+            <div id="start-screen" style="text-align: center;">
+                <h1>Навигатор Кружков</h1>
+                <p>Привет! Узнай, какое направление подходит именно тебе.</p>
+                <input type="text" id="userName" placeholder="Введи своё имя" style="padding: 12px; width: 100%; border: 2px solid #ddd; border-radius: 8px; margin: 20px 0; font-size: 16px; outline: none; box-sizing: border-box;">
+                <button class="btn-next" style="width: 100%;" onclick="startQuiz()">Начать тест</button>
+            </div>
+
+            <div id="quiz-screen" style="display: none;">
+                <div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: 600;">
+                    <span id="qCounter"></span>
+                    <span id="userNameDisplay"></span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="question-title" id="questionTitle"></div>
+                <div id="answers" class="options-list"></div>
+                <div class="controls">
+                    <button class="btn-prev" id="prevBtn" onclick="prevQuestion()">Назад</button>
+                    <button class="btn-next" onclick="nextQuestion()">Далее</button>
+                </div>
+            </div>
+
+            <div id="result-screen" style="display: none;">
+                <h2 style="text-align: center;">🎯 Твой профиль интересов</h2>
+                <div id="statsContainer"></div>
+                <h3 style="margin-top: 25px;">Рекомендуемые кружки:</h3>
+                <div id="clubsContainer"></div>
+                <button class="btn-next" style="width: 100%; margin-top: 25px;" onclick="resetQuiz()">Пройти заново</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="disciplines-tab" class="page-section">
+        <div class="container">
+            <div id="discipline-main">
+                <h1 style="text-align: center;">Все дисциплины</h1>
+                <div class="discipline-grid">
+                    <div class="discipline-card" onclick="startFacultyQuiz('business')">
+                        <div class="circle-icon">💼</div>
+                        <strong>Факультет Бизнеса и управления</strong>
+                    </div>
+                    <div class="discipline-card" onclick="startFacultyQuiz('applied')">
+                        <div class="circle-icon">💻</div>
+                        <strong>Факультет прикладных наук</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div id="faculty-quiz-screen" style="display: none;">
+                <h2 id="faculty-name-display" style="text-align: center;">Опрос</h2>
+                <div class="progress-bar-container">
+                    <div class="progress-fill" id="f-progressFill"></div>
+                </div>
+                <div class="question-title" id="f-questionTitle"></div>
+                <div id="f-answers" class="options-list"></div>
+                <div class="controls">
+                    <button class="btn-prev" onclick="fPrevQuestion()">Назад</button>
+                    <button class="btn-next" onclick="fNextQuestion()">Далее</button>
+                </div>
+            </div>
+
+            <div id="f-result-screen" style="display: none; text-align: center;">
+                <h2>Твоя рекомендуемая программа:</h2>
+                <div id="f-result-content"></div>
+                <button class="btn-next" style="width: 100%; margin-top: 25px;" onclick="closeFacultyQuiz()">К списку факультетов</button>
+            </div>
+        </div>
+    </section>
+    <script src="Script.js"></script>
+</body>
+</html>
